@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .Header {
+  width: 100vw;
+  height: 127px;
+  position: relative;
+}
+
+.orange {
+  background-color: #FFA400;
+  width: 100vw;
+  height: 34px;
+}
+
+.insideheader {
+  width: 100vw;
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 50%;
+  height: 100%;
+  background-color: #FFF6E5;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Anton, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 57.6px;
+  letter-spacing: 0.003em;
+  text-align: left;
+  color: #FFA400;
+  position: relative; /* додаємо позиціонування для бургер-меню */
+}
+
+.headerbuttons {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding-right: 40px;
+  background-color: #FFF6E5;
+}
+
+.burger-menu {
+  display: none;
+  position: absolute; /* позиціонуємо бургер по відношенню до .logo */
+  top: 50%;
+  right: 20px; /* переміщуємо праворуч, зменшивши відстань до правого краю */
+  transform: translateY(-50%);
+  z-index: 2; /* додаємо, щоб бургер був на передньому плані */
+}
+
+.burger-icon {
+  font-size: 30px;
+  cursor: pointer;
+  color: #2B2D38;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #FFF6E5;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 3; /* додаємо, щоб випадаюче меню було на передньому плані */
+}
+
+.dropdown-content a {
+  color: #2B2D38;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #FFA400;
+}
+
+.burger-icon:hover + .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .headerbuttons {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+  }
+  .logo {
+    width: 100%; 
+  }
+}
+
+    .slider {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+    .slide {
+      min-width: 100%;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2em;
+      font-weight: bold;
+      transition: transform 0.5s ease;
+    }
+    .slide:nth-child(1) { background-image: url('https://s3-alpha-sig.figma.com/img/d2bf/cfab/ee40ede76b392d97907197fcfb32c7b6?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VN-jND855EkAoPQU5ygFA9Dr6sDKdhSJWvobjGUkVBI0iIvw5S2arp~0IWoSZf0qAO0gJHqmUEeHogbmG2iCWEu7x~5siSQnUnF~E7wfbNaH0RTqvreBIr5P40g9VS0SCdykax2iQVY7-3N5B~k8sLTbRnkDuPaCTEv3g9PAPwVQRrelKPOnktqmyUwl~LPaghuPkN2Vg3Cf0Fqa5I-9Br4neOiE7pUuMYNTbTiuS~8VtUGTkrt2mro8GkNN3Ne5avUYrquZdqpX6-rVrJxEYOxgXSeq7kJdb9MY4T0BZugDoLQv4ip4PLUq1npCnC0U9LH~JvrDncjDExCKkegWUw__ '); }
+    .slide:nth-child(2) { background-image: url('https://s3-alpha-sig.figma.com/img/89ed/ee66/496e517365642faaf36a4df65c977619?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jLHziCxGYCrORGCuBA1raX85dBfgut~BcEYBP2TeN~qdT8XKRV~B3VvKceUzT9TzUb1OYqEjSpO~r7lJW7h76fMUsvb2ApPzWLT6cp8GF~0RKtNltrSjVt0wz0e1Y2hoTSEeThID37SgSm~cCm7wWMQs4JAMGMr0H6W3fodyao4f-~y7JmT8inVHTzh6frfGd9uwJVcOlQCRWl0K1vHU1Q8otMI04P~zEswwIPhY3lxoYocQB6TziDuVjZPT6JXXblHMO~AzbyoMDyWToEG8eWz6Biw7L2V2enuWmLzgGnxCTWqEzVnCbnoseJ-WGWan5~lYc9~6Kv6bXKQTghYqGA__'); }
+    .slide:nth-child(3) { background-image: url('https://s3-alpha-sig.figma.com/img/dc6b/4dd9/4c8bd73bb59d3d016e551a8d7648aa37?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UoXv394D~c0Boe2WgCX~WZhvEvxXeTRzYC3NEmvPGfPOdla7MVp-1njfhwqi9u8~unPEuFHWguTyfTT6~z78feubCJEI~1eqxLNTbQvo165askUDk20ThWO3XDIO-d0YwT2IhfHs1wBvy62rDLUfKr0ch4QP9T1YfwCj~4lHV4u3IB2vJBNI-PDoR854HAUmZ7-Qyuc0olV4j6h2peFMLJI~9bbfyByABZRhNd9ciKSE-W~~bim0NQPtAA3dTd~m18d92WFW7Dr7tT1j4DI3hZ1EF9wvJ5lgISxV7nWi8qesTWgbSFAR66jzDQRJ90dxZI~4zwkKd3sY~lJSDf15Cg__'); }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3em;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      user-select: none;
+    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    .whitesection{
+      width: 100vw;
+      height: 10vh;
+      background-color: white;
+    }
+    .beforePopularSection{
+      width: 100vw;
+      height: 206px;
+      display: flex;
+    }
+    .garanties{
+      background-color: #FFF4DA;
+      width: 80%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      overflow: hidden;
+    }
+    .triangle1{
+      width: 5vw;
+      height: 100%;
+      border-top: 100px solid transparent;
+      border-bottom: 100px solid transparent;
+      border-left: 100px solid #FFF4DA;
+    }
+    .garantiesright{
+      background-color: #F0F0F0;
+      width: 15vw;
+      height: 100%;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
+    }
+    .leaf1{
+      background-color: white;
+      width: 90px;
+      height: 78px;
+      transform: skew(-25deg);
+      border-top-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      margin-left: 5vw;
+    }
+ 
+    .PopularSection {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+h1, h3 {
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    align-items: center; 
+    width: auto; 
+    margin-right: auto;
+  }
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spaceforpopname {
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popname {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 30vh;
+  width: 20vw;
+  font-size: x-large;
+}
+
+.popcontent {
+  height: 40vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.form1-3 {
+  background-color: #EDEDED;
+  width: 18vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.popimg1,
+.popimg2,
+.popimg3 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.popimg1 img,
+.popimg2 img,
+.popimg3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.button-container {
+  margin-top: 20px; /* Відстань між кнопками */
+  text-align: center; /* Центрування кнопок */
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  text-decoration: none;
+  color: white;
+  background-color: #003366; /* Темно-синій колір кнопки */
+  padding: 20px 30px; /* Збільшений розмір кнопки */
+  border: 2px solid white;
+  display: inline-block;
+  font-size: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: lightblue; /* Зміна кольору фону на блакитний при наведенні */
+}
+
+.button-text {
+  display: block; /* Кожен рядок буде окремим блоком */
+  font-size: 16px;
+}
+
+.button-text:first-child {
+  font-weight: bold; /* Для "999 uah" робимо жирним */
+  margin-bottom: 5px; /* Відстань між рядками */
+}
+
+footer {
+  width: 100vw;
+  height: 60vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("https://s3-alpha-sig.figma.com/img/6909/d277/72fa1eaebf42319636db7237d257605c?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EvRss7tQuwtdWr~Yn7PdHz2LDLPw-iSESdQxiMRf~t2yORGaIuafBRUpYzAkuYkcTWjedkWvr6oWEcFYU5L4OP13GL4CkQI-U~teONmrUe61KzULcllvNIUCO6ThXOiMyNrWbAXHJTxuaNe~B86283rt4A4YXQ~nZbwdKpXEfWzCUetEDq3a22MaYsSlABgSgzSXpDqN8t--8~nxoj~PK6JOjSNlZtjb-6wfrWpCZWvodvIYeoiwTMaMl6cmCaPQaAvCrHnxokU~y~prcRfTNH3I3FW1NkEAssTZHpQFrv0wtns3aEXDVV3UvTG7aBiZ4zvPnkkg7FYdhYrBRInhvw__");
+  background-size: cover;
+  background-position: center;
+}
+.topfoot {
+  width: 100vw;
+  height: 80%;
+  display: flex;
+}
+.leftfoot {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.qwe {
+  font-family: Anton, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 57.6px;
+  letter-spacing: 0.003em;
+  text-align: left;
+  color: #FFA400;
+}
+.grid {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 5px;
+  width: 100%;
+}
+.grid-item {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.rightfoot {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.bottomfoot {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.asd {
+  font-family: Open, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 49.03px;
+  text-align: left;
+}
+.p {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-top: 20px;
+  font-family: Open, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32.4px;
+  text-align: left;
+}
+.input {
+  width: 50%;
+  height: 8vh;
+  color: white;
+  border: 2px solid #FFA400;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.input input::placeholder {
+  font-size: medium;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .input {
+    width: 80%; 
+  }
+}
+
+.logos {
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+}
+
+.circle {
+  width: 10vh;
+  height: 10vh;
+  border: 0.4vh solid #FFA400;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin: 1vh;
+}
+
+.icon {
+  width: 60%; 
+  height: 60%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .circle {
+    width: 10vw;
+    height: 10vw;
+    border-width: 0.5vw;
+  }
+
+  .icon {
+    width: 55%; 
+    height: 55%;
+  }
+}
+
+@media (max-width: 480px) {
+  .circle {
+    width: 12vw;
+    height: 12vw;
+    border-width: 0.6vw;
+  }
+
+  .icon {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.polygon{
+      width: 100vw;
+      height: 130vh;
+      display: flex;
+    }
+    .row1-3{
+      width: 30vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .row2{
+      width: 40vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .rowimg1{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/fbbb/639a/eba88d270c8d71b9503405fa294dc921?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UkxChccazx8Fv~2BzllX0QTK8ChS~DALJ-krVWAaPxmNi38UyqMztHaCrEGV4r22qqtj8wWL7gdzGrGjFQ6bV7o64TVM-bPLj1olqGEVwiNCZjwFYK-MRxCh9GjCEwdh4JeXW-afLp35hz0~bAU5RNmKnauqhBrrGcfVgsgW6HtKLUmeC3cp9Atzhl5l1a9R87A5F8ihEmr-mMXD4ojIfkAWhJ8j4dl7dpqMVpSHbfiZ-kMPcL5sNsownNP8OZH5WGeHG~R9u7mDCCzAiryloj2IIWDuulbnjqU-G5IWSIh85z-766vA-lQYCuznMpU4mpv45nVZxq-fuk7w81nBmg__");
+      background-size: cover;
+    }
+    .rowimg2{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/debb/7fec/94cee9ec4398a7a1d8b441fe40ed08aa?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dPoTivVm9FmQ~HH3natPmmS0gNXR53vOj2luulP7Hf6RrhS35rRe5r1c2uWo5BNw1eI4SjsNhYbaxSA8ZOryqY708MpeBjc0IxCBVrNp3UBlZNXU6qRKm0ZepgRhf2eA78G5G4UI3M8be0ageWeErJSmosMa1J0wjCAhI3QcAFY0F5DbFLFd-R3c4vas4cMo3CwuI~P~ByN-wwFAhXFKdVsXKKInLsMvaKKpZLxs8eheocksrF~y4rWMv3-iuIcZhoaT7PJu~K4e9cDorZPZRykBSY6Pv44nNVEc1IIiois9bZIRjNP6snzZH528jlfTCI-bC6sJedNsK1tXorLrKQ__");
+      background-size: cover;
+      margin-top:10px;
+    }
+    .rowimg3{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/475a/68b8/fdc403d2905f28fc7dcb2a93e3fd97c3?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AOwPjzmKLr8YbdqZkg4G-WxMpMjAcSmcf~wWHTsObdjMH9b9YvLCXi7RH~7hWAhDkb~dzLcPcu-gn5M78uzW4ylEA4StzKALP3iCT67u9ImKLuHofGOTYBlBpBWENDgCOD-k-W-J02FE3uxdg6Bab7BIH8tZUrFced7LrwCGuHZvTQkYq5UZ3c0EMjjYa7LqaPdB-yM-u7p4UPuZZEhyuqiVp6NYxRqS2vG2Dx1hP32ttmKrrxol34zPEz92DXgI8JPZSWRwH5AycX4uH-akbZr1HSdIsc5iA7NkGFo4Kefnqjhp9KHtA7CBN~Tm8e1X7g~5DVIKacMVvRupSNkftA__");
+      background-size: cover;
+      margin-top:10px;
+    }
+    .rowimg4{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/f741/9965/47d58bb3247a4889b6b3165f345cadd0?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XuwO8uHJ1I-Vym6PD9xwWkwswXzw55Wf2hxdJuEObuJzD5URYZI2aA~HnvKlcFc6EjV2NSxDxHYFQD9dauaGVK8kt8oqsHXszLBxztzGKEPQC-z4xYelp0Xz1Dqgsg~CMBxNPMuL-j9pkRSrl6wfjz6ULNUSp-3qWSA~mTc1ruVWjjd1M-wR0d2W3DbKx3E-fTz3hmWs3a-QvFBYLRi8CwbwNMvfhhDX5N8v3U0aFGS5IUa6KcQ2Pro3UVK7qrH6j2fgE~4fNUQLmYQz~YGpl693thY5HyqMF-DN1cNLoE~R1bxnUf90b~SieFF7fLTuWZMEzZdX4A12NQY6dB-~Ig__");
+      background-size: cover;
+    }
+    .rowimg5{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/61ef/89e8/2f2fc5b68681b8fd4aa997e7ec24e259?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=avrRaS9E3GMRuxob-SvC0L8RtRr8sizTbCnDnkSvRn569SaPBG3P90hQxMBYaha7V3Fslmv-cfUtuavUU1lEYry5H3KjEWLjyl6DdcOQJ21xnZ1TGhWByWy9w44d6HSjYAOHo50xD0tLOJOJT50WYr2qxmRr9i3F9aOhvWC89ve7QsrJCJgKFNVpc7sBP59eGPz88Cl4eRNCzR~rOKjKKF81z4WvP38Yr5pepbM0fsN8W9QVConfW3d4tT83TNzil0MjHkWEExdE-1sxr~SUhEqKeKVcPB2fvMHbbv548RmF9hqtqFwfrE0Td~tTK0c4M9zAHqcBu5wanm8rGo8z9Q__");
+      background-size: cover;
+      margin-top:10px;
+    }
+    .rowimg6{
+      width: 60%;
+      height: 30%;
+      background-image: url("https://s3-alpha-sig.figma.com/img/762a/5252/f0fd78e0bad32d446ba37a86537bb0e8?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fO~d-32Pn6mmssqrBptlSGqXcxfmDHZjHcvMzgOkr~kVq-Pa0dXynsIeAXnwVktgJ3j5IjbQzgfu0Q3AeC9t36KzGCUUPGPm0oWP0THiVKdlN2GjoTbqi5KP2P5jwrezrKf2pQc9sfIuXyhVg2aiK3gIHjHt65Dn-EnzEixJ3eVT9UgAD5QWJ9gmSDu2QkZuA--iOp6pw4tkXmS26K6WdrDLmEk7HJQdi-I4V1ExJmRGXosml~lxqfuvwVtrJYJUNXsRAG-QrLh3DefKB7Fg4WAKu~I1dh0hn5zeHirjr3tikQnivwpDIdPCoj39u3AmyOXanS27uho0mTXro2Uxjg__");
+      background-size: cover;
+      margin-top:10px;
+    }
+    .rowname{
+      width: 100%;
+      height: 10vh;
+      font-family: Anton, sans-serif;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 57.6px;
+      letter-spacing: 0.005em;
+      text-align: left;
+      display: flex;
+      justify-content: center;
+      color: #FFA12D;
+    }
+    .rowinfo{
+      font-family: Merriweather,sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28.8px;
+      letter-spacing: 0.005em;
+      text-align: center;
+      color: #FFA12D;
+      margin-bottom:3vh;
+    }
+    .row2img{
+      background-image:linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("https://s3-alpha-sig.figma.com/img/2ec9/647a/d264688ff8a9f46e2d1c1930e7e2d09b?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fp~zfJERT-1VeFc3oJqnXdMLJhUEskKPW3bS5NwlwOI-05YgxdOETqXbKvK3MfCjQuPX94rHs9reEfKe0Nm3xYZ-vmI-zpXP8xUzQ2dl6O5qB9q0vYoc1hhs5RDxieuOWqcI~9WSP9YQWYpAhQcQzJXq8qICXy1Zyg~UewqncltifW0dVlGjR3pQe-KgjIEGCGTSN-Lza2Q6l~-qqLjsFR~DMHVy0lHegQ0f5zNuM2so2tqXUyMv7ALI-lFuzCYmmu81JUWJamZLBuAjC5n4ZtEK3uStv2KwlNFXaQYVufYxPviw~35ceJBbSGblSDSza8Jt8ceg1dyG3Xxl0m7Rdw__");
+      width: 90%;
+      height: 70%;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .rowaddimg{
+      width: 50px;
+      height: 50px;
+      background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png");
+      background-size: contain;
+      margin-bottom: 5px;
+    }
+.text {
+  width: 90%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Open, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  
+}
+@media (max-width: 768px) {
+  .row1-3 {
+    display:none; 
+  }
+  .row2{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: auto; 
+    margin-right: auto; 
+  }
+  .rowname{
+    text-align: center;
+  }
+  }
+  .row2img {
+    width: 100%; 
+  }
+  
+
+.reviewsection {
+    width: 100vw;
+    height: 50vh;
+    background-color: #F0F0F0;
+}
+
+.reviewtopsection {
+    display: flex;
+    width: 100vw;
+    height: 15vh;
+}
+
+.hr2 {
+    height: 2px;
+    width: 100vw;
+    border: 2px solid rgba(61, 61, 61, 0.3);
+}
+
+.realcommname {
+    display: flex;
+    align-items: center;
+    color: #9A9AB0;
+    width: 85%;
+}
+
+.stars {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #FFA400;
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-left: 130px;
+    color: #11142D;
+}
+
+.grid2column {
+    width: 32vw;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.leafff {
+    transform: skew(+25deg);
+    width: 100%;
+    height: 100%;
+}
+
+.PopularSection2 {
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFF4DA;
+}
+
+.popsec2name {
+    width: 100vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.ps2name {
+    width: 30vw;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    font-family: Anton, sans-serif;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 66px;
+    letter-spacing: 0.005em;
+    text-align: left;
+    color: #111C4E;
+}
+
+.ps2bot {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+}
+
+.ps2botr {
+    height: 100%;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+
+.ps2botl {
+    height: 100%;
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+}
+
+.ps2botl2 {
+    width: 30vw;
+    height: 100%;
+    margin-right: 20vw;
+}
+
+.ps2botr2 {
+    width: 30vw;
+    height: 100%;
+    margin-right: 20vw;
+}
+
+.ps2botname1 {
+    font-family: Merriweather, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.8px;
+    letter-spacing: 0.005em;
+    text-align: left;
+    margin-left: 15vw;
+    width: 200%;
+}
+
+.ps2botname2 {
+    font-family: Merriweather, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.8px;
+    letter-spacing: 0.005em;
+    text-align: left;
+    margin-left: 10vw;
+    width: 200%;
+}
+
+.rrrrrrrrrrr {
+    transform: skew(-25deg);
+    width: 13vw;
+    height: 4vh;
+    background-color: #111C4E;
+    margin-left: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sssssssss {
+    width: 13vw;
+    height: 4vh;
+    background-color: #111C4E;
+    transform: skew(-25deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.andrian {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .reviewsection {
+        height: auto; 
+        padding: 10px; 
+    }
+
+    .reviewtopsection {
+        flex-direction: column; 
+        height: auto; 
+    }
+
+    .hr2 {
+        width: 100%; 
+    }
+
+    .realcommname {
+        width: 100%; 
+        text-align: center; 
+    }
+
+    .stars {
+        justify-content: center; 
+        margin-top: 5px; 
+    }
+
+    .grid2 {
+        grid-template-columns: 1fr; 
+        margin-left: 0; 
+    }
+
+    .grid2column {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .leafff {
+        width: 90%; 
+        height: auto; 
+    }
+
+    .PopularSection2 {
+    height: auto; 
+    padding: 2%; 
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+}
+
+.popsec2name {
+    height: auto; 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
+    align-items: flex-start; 
+}
+
+.ps2name {
+    width: 100%; 
+    font-size: 5vw; 
+    line-height: 6vh; 
+    text-align: left; 
+}
+
+.ps2bot {
+    display: flex;
+    flex-direction: column; 
+    height: auto; 
+    width: 100%; 
+}
+
+.ps2botr, .ps2botl {
+    width: 100%; 
+    height: auto; 
+    justify-content: flex-start; 
+    display: flex; 
+}
+
+.ps2botl2, .ps2botr2 {
+    width: 90%; 
+    margin: 10px 0; 
+}
+
+.ps2botname1, .ps2botname2 {
+    margin-left: 0; 
+    width: 100%; 
+    text-align: left; 
+}
+
+.rrrrrrrrrrr, .sssssssss {
+    display: inline-block;
+    height: 4vh;
+    padding: 5px; 
+    margin: 10px 0; 
+    text-align: center; 
+    white-space: nowrap; 
+}
+
+.andrian {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+
+@media (max-width: 768px) {
+    .rrrrrrrrrrr, .sssssssss {
+        width: auto; 
+        margin-left: 0; 
+        margin-right: auto; 
+    }
+}
+
+}
+
+  </style>
+</head>
+<body>
+  <div class="Header">
+    <div class="orange"></div>
+    <div class="insideheader">
+      <div class="logo">GymSupplements</div>
+      <div class="headerbuttons">
+        <div><a style="color:#2B2D38;text-decoration: none" href="#">магазин</a></div>
+        <div><a style="color:#2B2D38;text-decoration: none" href="#">каталог</a></div>
+        <div><a style="color:#2B2D38;text-decoration: none" href="#">блог</a></div>
+        <div><a style="color:#2B2D38;text-decoration: none" href="#">інше</a></div>
+        <div><a style="color:#2B2D38;text-decoration: none" href="#"><img style="width: 2vw; height: 4vh; background: transparent" src="https://img.icons8.com/ios7/600/search.png" alt=""></a></div>
+        <div><a style="color:#2B2D38;text-decoration: none" href="#"><img style="width: 2vw; height: 4vh;" src="https://www.iconpacks.net/icons/2/free-add-to-cart-icon-3046-thumb.png" alt=""></a></div>
+      </div>
+      <div class="burger-menu">
+        <div class="burger-icon">&#9776;</div>
+        <div class="dropdown-content">
+          <a href="#">магазин</a>
+          <a href="#">каталог</a>
+          <a href="#">блог</a>
+          <a href="#">інше</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="slider">
+  <div class="slide">Покращіть свої тренування</div>
+  <div class="slide">Лише якісний товар</div>
+  <div class="slide">Ви будете приємно вражені</div>
+
+  <div class="arrow left" onclick="changeSlide(-1)">&#10094;</div>
+  <div class="arrow right" onclick="changeSlide(1)">&#10095;</div>
+</div>
+<div class="whitesection"></div>
+<div class="beforePopularSection">
+  <div class="garanties">
+    <div>
+      <div class="leaf1">
+        <div class="leafff"><img style="margin-left: 7px; margin-top: 5px " width="80%" src="https://img.icons8.com/ios7/512/plus.png" alt=""></div>
+      </div>
+      <div><p style="margin-left: 2vw; margin-top: 2vh">Зроблено в США</p></div>
+    </div>
+    <div>
+      <div class="leaf1">
+        <div class="leafff"><img style="margin-left: 7px; margin-top: 5px " width="80%" src="https://img.icons8.com/ios7/512/plus.png" alt=""></div>
+      </div>
+      <div><p style="margin-left: 2vw;margin-top: 2vh">Якість гарантована</p></div>
+    </div>
+    <div>
+      <div class="leaf1">
+        <div class="leafff"><img style="margin-left: 7px; margin-top: 5px " width="80%" src="https://img.icons8.com/ios7/512/plus.png" alt=""></div>
+      </div>
+      <div><p style="margin-top: 2vh">Медично-розраховані дози</p></div>
+    </div>
+
+  </div>
+  <div class="triangle1"></div>
+  <div class="garantiesright"></div>
+</div>
+<div class="PopularSection">
+  <div class="video-background">
+    <video autoplay loop muted>
+      <source src="відеовеб.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="spaceforpopname">
+    <div class="popname">
+      <h1>ПОПУЛЯРНІ ТОВАРИ</h1>
+    </div>
+  </div>
+  <div class="popcontent">
+    <div class="cycle">
+      <div class="form1-3">
+        <div class="popimg1">
+          <img src="https://s3-alpha-sig.figma.com/img/d0dc/943b/7e42cd81d08875565565d22b0da48112?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=K73MnW9Jt0V5bcqfE2vfLdSY-4hpqrj1q5UkJDcMx2kBTUDp61kjVKsad6uR0oI3na7kL-K6XaYAv3cjfFZ4bZq36JDls~piJeRNF84qI-~EHFgiG2QiMmeLdMWaFFoWve-LFfGhn9dqL9pfYrGp1dBDSDt9MRtG0G4lH6wKHFM35O5G00m2K37t7fru1pwSW8W4prXBrA9riUDpAg9AQk3bctVbho0wDY2uF0jYs-huME-mliyDwxMLrEeDoiB7k4ZKblYichtVBQwhPYt9U602ybFtWrqBorqZlw8mhKvXgLML6JKc5IS2rrdjv6hkj4x9f4u35qUoG1xSoz7BxQ__" alt="Pre-workout product image" class="responsive-image">
+        </div>
+      </div>
+      <h3>PRE-WORKOUT</h3>
+      <div class="button-container">
+        <a href="javascript:void(0)" class="button">
+          <div class="button-text">999 uah</div>
+          <div class="button-text">додати в кошик</div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="cycle">
+      <div class="form1-3">
+        <div class="popimg2">
+          <img src="https://s3-alpha-sig.figma.com/img/1a3d/9353/e04d9e805ee1d937e1dfa41b3879756d?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VlVlZPrxytN-Mw1Nm4SMdosQyrzVcrdkEqYmVBEp5txJgLWkhweNWFnJZdlwnuitb-3aswwh3Yoi9UWBvPN03vBVszYTXhZrrkt7K7wBHfovFdB0qbJB~NC101hMsHSLWcGwjmB2yk3dCpLV79GLJrZvgeEkrAK1-akGFM656GoYaCYTAANMAand55gd~rhkmaMJ48kD6EdnZ1WrUk~cFJ3lNxVk4iWX-7d2I41TQa4kASDrI2zlucbXxu8BvA1EXhL0RlcgOj~qc-l7gR2bYFIhVk2~UEehVqMNrEew99xTxzrp~dAkKVSRmIRRMT0R6y2w5Kd9q8ZMkVNx7hdO4w__" alt="Whey protein product image" class="responsive-image">
+        </div>
+      </div>
+      <h3>WHEY PROTEIN</h3>
+      <div class="button-container">
+        <a href="javascript:void(0)" class="button">
+          <div class="button-text">999 uah</div>
+          <div class="button-text">додати в кошик</div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="cycle">
+      <div class="form1-3">
+        <div class="popimg3">
+          <img src="https://s3-alpha-sig.figma.com/img/ff9e/15fc/ee0a50e223c2822bc0507a72b9236453?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Um1~E~tmwyuC5HGWuUR2WKUej4WLpPbIFxmR48BPuibMfpSvu-5ChM0nO~u6MBz2IbvNP9MMxckavtI9~jBsgIdhyYWeYXCCsTS4AK7YLU83Xcuo23m2D73aTPMZfSTtHfZxKq3WCBUdjGzcZmue20RqeJ6lGedGe~TByj5~fa~vbYEcYUzTBBqMuKcfBLi94BIGPGfkOH4rTSaG5OCnd9Zbdycml5AzuV7odqcJN7R6WChxxVNqTdGZiELE~OgrDjw5dosns32xuNsDcF4whaTijknEDocApnP9HF-PkL4B4~itu47i8hLOCbZzu3V3Dx-c6g~FMjfhHJp4lJCRtQ__" alt="Creatine product image" class="responsive-image">
+        </div>
+      </div>
+      <h3>CREATINE</h3>
+      <div class="button-container">
+        <a href="javascript:void(0)" class="button">
+          <div class="button-text">999 uah</div>
+          <div class="button-text">додати в кошик</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reviewsection">
+  <div class="reviewtopsection">
+    <div class="realcommname"><p>Реальні відгуки покупців</p></div>
+    <div class="stars"><p>★★★★★</p><p style="color: black; margin-left: 10px">1050 відгуків</p></div>
+  </div>
+  <div class="hr2"></div>
+  <div class="grid2">
+    <div class="grid2column">
+      <div style="color: #FFA400; margin-left: 10vw">★★★★★</div>
+      <h2 style="margin-left: 7vw">Нова добавка !! </h2>
+      <div class="andrian">
+        <img width="230px" height="200px" src="https://s3-alpha-sig.figma.com/img/d0dc/943b/7e42cd81d08875565565d22b0da48112?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=K73MnW9Jt0V5bcqfE2vfLdSY-4hpqrj1q5UkJDcMx2kBTUDp61kjVKsad6uR0oI3na7kL-K6XaYAv3cjfFZ4bZq36JDls~piJeRNF84qI-~EHFgiG2QiMmeLdMWaFFoWve-LFfGhn9dqL9pfYrGp1dBDSDt9MRtG0G4lH6wKHFM35O5G00m2K37t7fru1pwSW8W4prXBrA9riUDpAg9AQk3bctVbho0wDY2uF0jYs-huME-mliyDwxMLrEeDoiB7k4ZKblYichtVBQwhPYt9U602ybFtWrqBorqZlw8mhKvXgLML6JKc5IS2rrdjv6hkj4x9f4u35qUoG1xSoz7BxQ__" alt="">
+        <p style="margin-top: 5vh; color: #515151">Дуже хороша добавка</p>
+      </div>
+    </div>
+    <div class="grid2column">
+      <div style="color: #FFA400;  margin-left: 10vw">★★★★★</div>
+      <h2 style="margin-left: 7vw">Новий смак !!!</h2>
+      <div class="andrian">
+        <img width="160px" height="180px" src="https://s3-alpha-sig.figma.com/img/1a3d/9353/e04d9e805ee1d937e1dfa41b3879756d?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VlVlZPrxytN-Mw1Nm4SMdosQyrzVcrdkEqYmVBEp5txJgLWkhweNWFnJZdlwnuitb-3aswwh3Yoi9UWBvPN03vBVszYTXhZrrkt7K7wBHfovFdB0qbJB~NC101hMsHSLWcGwjmB2yk3dCpLV79GLJrZvgeEkrAK1-akGFM656GoYaCYTAANMAand55gd~rhkmaMJ48kD6EdnZ1WrUk~cFJ3lNxVk4iWX-7d2I41TQa4kASDrI2zlucbXxu8BvA1EXhL0RlcgOj~qc-l7gR2bYFIhVk2~UEehVqMNrEew99xTxzrp~dAkKVSRmIRRMT0R6y2w5Kd9q8ZMkVNx7hdO4w__" alt="">
+        <p style="margin-top: 5vh; color: #515151">Новий смак дуже вдачний</p>
+      </div>
+    </div>
+    <div class="grid2column">
+      <div style="color: #FFA400; margin-left: 5vw">★★★★★</div>
+      <h2 style="margin-left: 5.5vw">Вау</h2>
+      <div class="andrian">
+        <img width="230px" height="200px" src="https://s3-alpha-sig.figma.com/img/ff9e/15fc/ee0a50e223c2822bc0507a72b9236453?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Um1~E~tmwyuC5HGWuUR2WKUej4WLpPbIFxmR48BPuibMfpSvu-5ChM0nO~u6MBz2IbvNP9MMxckavtI9~jBsgIdhyYWeYXCCsTS4AK7YLU83Xcuo23m2D73aTPMZfSTtHfZxKq3WCBUdjGzcZmue20RqeJ6lGedGe~TByj5~fa~vbYEcYUzTBBqMuKcfBLi94BIGPGfkOH4rTSaG5OCnd9Zbdycml5AzuV7odqcJN7R6WChxxVNqTdGZiELE~OgrDjw5dosns32xuNsDcF4whaTijknEDocApnP9HF-PkL4B4~itu47i8hLOCbZzu3V3Dx-c6g~FMjfhHJp4lJCRtQ__" alt="">
+        <p style="margin-top: 5vh; color: #515151">Чудовий ефект</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="whitesection"></div>
+<div class="PopularSection2">
+  <div class="popsec2name">
+    <div class="ps2name"><p>ПОПУЛЯРНІ ТОВАРИ</p></div>
+  </div>
+  <div class="ps2bot">
+    <div class="ps2botl">
+      <div class="ps2botl2"><img style="width: 100%; margin-left: 7vw " src="https://s3-alpha-sig.figma.com/img/d0dc/943b/7e42cd81d08875565565d22b0da48112?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=K73MnW9Jt0V5bcqfE2vfLdSY-4hpqrj1q5UkJDcMx2kBTUDp61kjVKsad6uR0oI3na7kL-K6XaYAv3cjfFZ4bZq36JDls~piJeRNF84qI-~EHFgiG2QiMmeLdMWaFFoWve-LFfGhn9dqL9pfYrGp1dBDSDt9MRtG0G4lH6wKHFM35O5G00m2K37t7fru1pwSW8W4prXBrA9riUDpAg9AQk3bctVbho0wDY2uF0jYs-huME-mliyDwxMLrEeDoiB7k4ZKblYichtVBQwhPYt9U602ybFtWrqBorqZlw8mhKvXgLML6JKc5IS2rrdjv6hkj4x9f4u35qUoG1xSoz7BxQ__" alt="">
+        <div class="ps2botname1"><p>ulta pre-workout</p></div>
+        <div style="color: #FFA400; margin-left: 18vw">★★★★★</div>
+        <div class="rrrrrrrrrrr" style="margin-left: 13vw"><a href="javascript:void(0)" style="text-decoration: none; transform: skew(+25deg);color: white; margin-left: 2px; background: transparent;">додати в кошик</a></div>
+      </div>
+    </div>
+    <div class="ps2botr">
+      <div class="ps2botr2"><img style="width: 70%; margin-left: 8vw" src="https://s3-alpha-sig.figma.com/img/ff9e/15fc/ee0a50e223c2822bc0507a72b9236453?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Um1~E~tmwyuC5HGWuUR2WKUej4WLpPbIFxmR48BPuibMfpSvu-5ChM0nO~u6MBz2IbvNP9MMxckavtI9~jBsgIdhyYWeYXCCsTS4AK7YLU83Xcuo23m2D73aTPMZfSTtHfZxKq3WCBUdjGzcZmue20RqeJ6lGedGe~TByj5~fa~vbYEcYUzTBBqMuKcfBLi94BIGPGfkOH4rTSaG5OCnd9Zbdycml5AzuV7odqcJN7R6WChxxVNqTdGZiELE~OgrDjw5dosns32xuNsDcF4whaTijknEDocApnP9HF-PkL4B4~itu47i8hLOCbZzu3V3Dx-c6g~FMjfhHJp4lJCRtQ__" alt="">
+        <div class="ps2botname2"><p style="margin-top:3vh ">fitness standard creatine</p></div>
+        <div style="color: #FFA400; margin-left: 18vw">★★★★★</div>
+        <div class="rrrrrrrrrrr" style="margin-left: 13vw"><a href="javascript:void(0)" style="text-decoration: none; transform: skew(+25deg);color: white; margin-left: 2px; background: transparent;">додати в кошик</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="whitesection"></div>
+<div class="polygon">
+  <div class="row1-3">
+    <div class="rowimg1"></div>
+    <div class="rowimg2"></div>
+    <div class="rowimg3"></div>
+    </div>
+  <div class="row2">
+    <div class="rowname"><p># gymsupplements</p></div>
+    <div class="rowinfo"><p>Запостіть свої фотографії зі спортзалу із хештегом #gymsupplements та вигрвайте подарунки!</p></div>
+    <div class="row2img">
+      <div class="rowaddimg"></div>
+      <div><a style="color: white; text-decoration: none" href="https://www.instagram.com" target="_blank">Наш інстаграм</a></div>
+    </div>
+  </div>
+  <div class="row1-3">
+    <div class="rowimg4"></div>
+    <div class="rowimg5"></div>
+    <div class="rowimg6"></div>
+  </div>
+  </div>
+<footer>
+  <div class="topfoot">
+    <div class="leftfoot">
+      <div class="qwe"><a onclick="scrollToTop()">GymSupplements</a></div>
+      <div class="grid">
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Меню</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Про нас</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Домашня сторінка</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Інформація</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Добавки</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">контакти</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">Сервіси</a></div>
+        <div class="grid-item"><a style="color: white; text-decoration: none" href="javascript:void(0)">питання та відповіді</a></div>
+      </div>
+    </div>
+    <div class="rightfoot">
+      <div class="asd" style="text-align: center; margin-top: 0;">Зв'язатись з нами</div>
+      <div class="p" style="text-align: center; margin-bottom: 20px;">Залиште ваше повідомлення</div>
+      
+      <div class="input" style="display: flex; justify-content: center; margin-bottom: 10px;">
+          <input style="font-size: medium; background: transparent; color: white; width: 65%; border: 0px solid black;" type="text" placeholder="Ваше ім'я">
+      </div>
+      
+      <div class="input" style="display: flex; justify-content: center; margin-bottom: 10px;">
+          <input style="font-size: medium; background: transparent; color: white; width: 65%; border: 0px solid black;" type="text" placeholder="Ваша пошта">
+      </div>
+      
+      <div class="input" style="display: flex; justify-content: center; margin-bottom: 10px;">
+          <input style="font-size: medium; background: transparent; color: white; width: 65%; border: 0px solid black;" type="text" placeholder="Тема">
+      </div>
+  
+      <div class="input" style="display: flex; justify-content: center;">
+          <input style="font-size: medium; background: transparent; color: white; width: 65%; border: 0px solid black;" type="text" placeholder="Ваше повідомлення">
+          <button id="joinbutton" style="font-size: medium; height: 80%; width: 123px; margin-left: 10px; background-color: #FFA400; color: white; border-radius: 5px;">Надіслати</button>
+      </div>
+  </div>
+  
+        <div class="logos">
+        <div class="circle">
+          <a href="https://www.facebook.com" target="_blank">
+            <img style="margin-left: 20px; margin-top: 5px" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="icon">
+          </a>
+        </div>
+        <div class="circle">
+          <a href="https://www.instagram.com" target="_blank">
+            <img style="margin-left: 20px; margin-top: 5px" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="icon">
+          </a>
+        </div>
+        <div class="circle">
+          <a href="https://twitter.com" target="_blank">
+             <img style="margin-left: 20px; margin-top: 5px" src="https://cdn3d.iconscout.com/3d/free/thumb/free-twitter-x-3d-icon-download-in-png-blend-fbx-gltf-file-formats--social-media-logo-pack-logos-icons-8263987.png?f=webp" alt="Twitter" class="icon">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottomfoot">
+    <div class="hr"></div>
+    <div style="color: white; margin-top: 30px"><h3>2024</h3></div>
+  </div>
+</footer>
+
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    const offset = -currentSlide * 100;
+    slides.forEach(slide => slide.style.transform = `translateX(${offset}%)`);
+  }
+
+  function changeSlide(direction) {
+    showSlide(currentSlide + direction);
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const button = document.getElementById('joinbutton');
+  button.addEventListener('click', function() {
+    alert('Ваше повідомлення надіслано');
+  });
+</script>
+
+</body>
+</html>
+
+<!--https://s3-alpha-sig.figma.com/img/762a/5252/f0fd78e0bad32d446ba37a86537bb0e8?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fO~d-32Pn6mmssqrBptlSGqXcxfmDHZjHcvMzgOkr~kVq-Pa0dXynsIeAXnwVktgJ3j5IjbQzgfu0Q3AeC9t36KzGCUUPGPm0oWP0THiVKdlN2GjoTbqi5KP2P5jwrezrKf2pQc9sfIuXyhVg2aiK3gIHjHt65Dn-EnzEixJ3eVT9UgAD5QWJ9gmSDu2QkZuA&#45;&#45;iOp6pw4tkXmS26K6WdrDLmEk7HJQdi-I4V1ExJmRGXosml~lxqfuvwVtrJYJUNXsRAG-QrLh3DefKB7Fg4WAKu~I1dh0hn5zeHirjr3tikQnivwpDIdPCoj39u3AmyOXanS27uho0mTXro2Uxjg__-->
+
+<!--https://s3-alpha-sig.figma.com/img/2ec9/647a/d264688ff8a9f46e2d1c1930e7e2d09b?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fp~zfJERT-1VeFc3oJqnXdMLJhUEskKPW3bS5NwlwOI-05YgxdOETqXbKvK3MfCjQuPX94rHs9reEfKe0Nm3xYZ-vmI-zpXP8xUzQ2dl6O5qB9q0vYoc1hhs5RDxieuOWqcI~9WSP9YQWYpAhQcQzJXq8qICXy1Zyg~UewqncltifW0dVlGjR3pQe-KgjIEGCGTSN-Lza2Q6l~-qqLjsFR~DMHVy0lHegQ0f5zNuM2so2tqXUyMv7ALI-lFuzCYmmu81JUWJamZLBuAjC5n4ZtEK3uStv2KwlNFXaQYVufYxPviw~35ceJBbSGblSDSza8Jt8ceg1dyG3Xxl0m7Rdw__-->
